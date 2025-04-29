@@ -1,12 +1,51 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
+import SkillsSection from '../components/SkillsSection';
+import ProjectsSection from '../components/ProjectsSection';
+import AchievementsSection from '../components/AchievementsSection';
+import GallerySection from '../components/GallerySection';
+import ContactSection from '../components/ContactSection';
+import Footer from '../components/Footer';
+import CustomCursor from '../components/CustomCursor';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading for smoother initial page load
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 bg-portfolio-bg-dark flex items-center justify-center z-50">
+        <div className="text-4xl font-bold text-portfolio-accent-cyan animate-pulse">
+          <span>Aether</span>
+          <span className="text-portfolio-text">Nav</span>
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="relative">
+      <CustomCursor />
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <AchievementsSection />
+      <GallerySection />
+      <ContactSection />
+      <Footer />
     </div>
   );
 };
